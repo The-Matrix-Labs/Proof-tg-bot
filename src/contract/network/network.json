@@ -1,0 +1,12 @@
+{
+  "BSC_Testnet": {
+    "contract": "0xc8e12e6A9b0F1b72fc9F8748920A093219DD7869",
+    "factory": "0x6725F303b657a9451d8BA641348b6761A6CC7a17",
+    "wbnb": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
+  },
+  "ETH": {
+    "contract": "0xc8e12e6A9b0F1b72fc9F8748920A093219DD7869",
+    "factory": "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f",
+    "weth": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+  }
+}
