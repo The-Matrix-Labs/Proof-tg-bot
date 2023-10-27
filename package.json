@@ -1,5 +1,5 @@
 {
-  "name": "proof-tg-bot",
+  "name": "proof-tg-bot-internal",
   "version": "1.0.0",
   "description": "this is going to update the the linked groups whenever new token will be created",
   "main": "src/index.ts",
