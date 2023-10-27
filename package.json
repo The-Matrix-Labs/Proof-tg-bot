@@ -1,21 +1,12 @@
 {
-  "name": "proof-tg-bot-internal",
+  "name": "proof-tg-bot",
   "version": "1.0.0",
-  "description": "this is going to update the the linked groups whenever new token will be created",
-  "main": "src/index.ts",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/index.ts",
-    "dev": "nodemon --exec ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Vishwa Vivek Yadav",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "ethers": "5.7.0",
-    "nodemon": "^3.0.1",
-    "telegraf": "^4.14.0",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
