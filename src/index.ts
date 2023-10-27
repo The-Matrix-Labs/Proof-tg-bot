@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { Telegraf, Context } from "telegraf";
-import { getLiquidityLocked, getTokenDetails } from "./utils/detail.util";
 import { tokenDetailsTemplate } from "./templates/template";
+import { getLiquidityLocked, getTokenDetails } from "./utils/detail.util";
 
 const ProofABI = require("./contract/abi/proof.json");
 const Network = require("./contract/network/network.json");

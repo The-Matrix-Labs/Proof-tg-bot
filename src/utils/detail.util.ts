@@ -8,8 +8,8 @@ import ProofABI from "../contract/abi/proof.json";
 import TokenABI from "../contract/abi/token.json";
 const Network: INetwork = require("../contract/network/network.json");
 
-const CURRENT_NETWORK = process.env.CURRENT_NETWORK || "";
 const PROVIDER_URL = process.env.PROVIDER_URL || "";
+const CURRENT_NETWORK = process.env.CURRENT_NETWORK || "";
 const CONTRACT_ADDRESS = Network[CURRENT_NETWORK]?.contract || "";
 
 const provider = new ethers.providers.JsonRpcProvider(PROVIDER_URL);
