@@ -2,7 +2,7 @@
   "name": "proof-tg-bot",
   "version": "1.0.0",
   "description": "this is going to update the the linked groups whenever new token will be created",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "start": "node src/index.ts",
     "dev": "nodemon --exec ts-node src/index.ts",

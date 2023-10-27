@@ -1,8 +1,9 @@
 {
   "BSC_Testnet": {
-    "contract": "0xc8e12e6A9b0F1b72fc9F8748920A093219DD7869",
+    "contract": "0x87c3e53354fC3e646d007BfB828811FE87b486ad",
     "factory": "0x6725F303b657a9451d8BA641348b6761A6CC7a17",
-    "wbnb": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
+    "weth": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+    "router": "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
   },
   "ETH": {
     "contract": "0xc8e12e6A9b0F1b72fc9F8748920A093219DD7869",
