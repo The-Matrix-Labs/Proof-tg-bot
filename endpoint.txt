@@ -1,0 +1,31 @@
+EndPoint =>  "/api/webhook/createToken"
+
+{
+  "chain": "ETH",
+  "totalSupply": "100000000",
+  "token": "FX1 Sports ($FX1)",
+  "maxBuy": "1000000 (1% of total supply)",
+  "CA": "0xc5190e7fec4d97a3a3b1ab42dfedac608e2d0793",
+  "owner": "0xFF3624776Be5C2e2e25A311096592AE942ef2311",
+  "teamAllocation": " 5% (caution: team can sell this, unless they lock it)",
+  "tax": "Buy 5% | Sell 5% (includes PROOF’s fee — 2% in first 72h, 1% after that)",
+  "initialLiquidity": "1 ETH",
+  "liquidityLocked": "90 days"
+}
+
+
+EndPoint => "/api/webhook/createWhiteListToken"
+
+{
+  "chain": "ETH",
+  "totalSupply": "100000000",
+  "initialLiquidity": "1 ETH",
+  "token": "FX1 Sports ($FX1)",
+  "maxBuy": "1000000 (1% of total supply)",
+  "CA": "0xc5190e7fec4d97a3a3b1ab42dfedac608e2d0793",
+  "owner": "0xFF3624776Be5C2e2e25A311096592AE942ef2311",
+  "teamAllocation": " 5% (caution: team can sell this, unless they lock it)",
+  "tax": "Buy 5% | Sell 5% (includes PROOF’s fee — 2% in first 72h, 1% after that)",
+  "whiteListDuration": "10 minutes",
+  "currentWhiteListed": "198 (including PROOF Pass holders)"
+}
