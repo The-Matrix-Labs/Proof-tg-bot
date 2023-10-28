@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Proof Bot");
 });
 
 app.post("/api/webhook/createToken", async (req: Request, res: Response) => {
