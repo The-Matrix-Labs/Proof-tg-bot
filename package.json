@@ -2,7 +2,7 @@
   "name": "proof-tg-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "type": "module",
   "scripts": {
     "start": "ts-node && node src/index.js",
