@@ -2,10 +2,12 @@ import {
   ITokenDetails,
   IWhiteListedTokenDetails,
 } from "./interfaces/interface";
-require("dotenv").config();
 import { Telegraf, Context } from "telegraf";
 import express, { Request, Response } from "express";
 import { tokenDetailsTemplate } from "./templates/template";
+import { config } from "dotenv";
+
+config(); // loading .env file
 
 const PORT = process.env.PORT || 8080;
 const BOT_TOKEN = process.env.BOT_TOKEN || "";
