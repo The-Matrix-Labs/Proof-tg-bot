@@ -5,6 +5,7 @@ export interface ITokenDetails {
   chain: string;
   owner: string;
   maxBuy: string;
+  message: string;
   totalSupply: string;
   teamAllocation: string;
   initialLiquidity: string;

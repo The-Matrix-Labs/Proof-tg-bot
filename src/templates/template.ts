@@ -8,6 +8,9 @@ export function tokenDetailsTemplate(
   isWhilteList?: boolean
 ): string {
   return `
+
+  <b>${data.message}</b>
+
   🔗 <b>Chain:</b> ${data.chain}
   
   🔹 <b>Token:</b> ${data.token}

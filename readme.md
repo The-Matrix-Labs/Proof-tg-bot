@@ -10,3 +10,5 @@
 "teamAllocation": "Team Allocation",
 "initialLiquidity": "Inital Liquidity"
 }
+
+https://magnificent-jade-trunks.cyclic.app/api/webhook/createWhiteListToken
