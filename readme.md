@@ -11,4 +11,6 @@
 "initialLiquidity": "Inital Liquidity"
 }
 
-https://magnificent-jade-trunks.cyclic.app/api/webhook/createWhiteListToken
+cyclic => https://magnificent-jade-trunks.cyclic.app/api/webhook/createWhiteListToken
+
+digitalOcean => https://lobster-app-tc9ix.ondigitalocean.app/
