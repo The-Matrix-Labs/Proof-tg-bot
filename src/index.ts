@@ -1,10 +1,14 @@
 import {
   ITokenDetails,
+  ITokenLaunchInfo,
   IWhiteListedTokenDetails,
 } from "./interfaces/interface";
 import { Telegraf, Context } from "telegraf";
 import express, { Request, Response } from "express";
-import { tokenDetailsTemplate } from "./templates/template";
+import {
+  launchTokenTemplate,
+  tokenDetailsTemplate,
+} from "./templates/template";
 import { config } from "dotenv";
 
 config(); // loading .env file
@@ -25,7 +29,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Proof Bot");
 });
 
-app.post("/api/webhook/createToken", async (req: Request, res: Response) => {
+app.post("/api/webhook/token", async (req: Request, res: Response) => {
   try {
     const tokenDetails: ITokenDetails = req.body;
 
@@ -41,7 +45,32 @@ app.post("/api/webhook/createToken", async (req: Request, res: Response) => {
       });
     }, MESSAGE_DELAY);
 
-    res.status(201).json("Notification has been sent to the group");
+    res.status(201).json("Stealth Notification has been sent to the group");
+  } catch (error) {
+    res.status(500).json("Something went wrong");
+    console.log("error: ", error);
+  }
+});
+
+app.post("/api/webhook/whiteListToken", async (req: Request, res: Response) => {
+  try {
+    const tokenDetails: IWhiteListedTokenDetails = req.body;
+
+    const tempalte = tokenDetailsTemplate(tokenDetails, true);
+
+    bot.telegram.sendMessage(PRIVATE_GROUP_ID, tempalte, {
+      parse_mode: "HTML",
+    });
+
+    setTimeout(() => {
+      bot.telegram.sendMessage(PUBLIC_GROUP_ID, tempalte, {
+        parse_mode: "HTML",
+      });
+    }, MESSAGE_DELAY);
+
+    res
+      .status(201)
+      .json("WhiteList token notification has been sent to the group");
   } catch (error) {
     res.status(500).json("Something went wrong");
     console.log("error: ", error);
@@ -49,24 +78,24 @@ app.post("/api/webhook/createToken", async (req: Request, res: Response) => {
 });
 
 app.post(
-  "/api/webhook/createWhiteListToken",
+  "/api/webhook/launchWhiteListToken",
   async (req: Request, res: Response) => {
     try {
-      const tokenDetails: IWhiteListedTokenDetails = req.body;
+      const tokenDetails: ITokenLaunchInfo = req.body;
 
-      const tempalte = tokenDetailsTemplate(tokenDetails, true);
+      const tempalte = launchTokenTemplate(tokenDetails);
 
       bot.telegram.sendMessage(PRIVATE_GROUP_ID, tempalte, {
         parse_mode: "HTML",
       });
 
-      setTimeout(() => {
-        bot.telegram.sendMessage(PUBLIC_GROUP_ID, tempalte, {
-          parse_mode: "HTML",
-        });
-      }, MESSAGE_DELAY);
+      bot.telegram.sendMessage(PUBLIC_GROUP_ID, tempalte, {
+        parse_mode: "HTML",
+      });
 
-      res.status(201).json("Notification has been sent to the group");
+      res
+        .status(201)
+        .json("Launch token notification has been sent to the group");
     } catch (error) {
       res.status(500).json("Something went wrong");
       console.log("error: ", error);

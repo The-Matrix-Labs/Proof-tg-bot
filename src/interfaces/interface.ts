@@ -5,7 +5,7 @@ export interface ITokenDetails {
   chain: string;
   owner: string;
   maxBuy: string;
-  message: string;
+  message?: string;
   totalSupply: string;
   teamAllocation: string;
   initialLiquidity: string;
@@ -24,4 +24,12 @@ export interface INetwork {
     weth: string;
     router?: string;
   };
+}
+
+export interface ITokenLaunchInfo {
+  Tax: string;
+  Token: string;
+  message?: string;
+  WhitelistDuration: string;
+  CurrentlyWhitelisted: string;
 }

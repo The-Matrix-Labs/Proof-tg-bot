@@ -1,5 +1,6 @@
 import {
   ITokenDetails,
+  ITokenLaunchInfo,
   IWhiteListedTokenDetails,
 } from "../interfaces/interface";
 
@@ -8,8 +9,7 @@ export function tokenDetailsTemplate(
   isWhilteList?: boolean
 ): string {
   return `
-
-  <b>${data.message}</b>
+  ${data.message ? `<b>${data.message}</b>` : ""}
 
   🔗 <b>Chain:</b> ${data.chain}
   
@@ -51,5 +51,20 @@ export function tokenDetailsTemplate(
       : ""
   }
   
+  `;
+}
+
+export function launchTokenTemplate(data: ITokenLaunchInfo) {
+  return `
+
+  ${data.message ? `<b>${data.message}</b>` : ""}
+  
+  <b>Token:</b> ${data.Token}
+
+  <b>Tax:</b> ${data.Tax}
+
+  <b>Whitelist Duration:</b> ${data.WhitelistDuration}
+
+  <b>Currently whitelisted:</b> ${data.CurrentlyWhitelisted}
   `;
 }

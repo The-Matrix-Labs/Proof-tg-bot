@@ -1,6 +1,9 @@
-EndPoint =>  "/api/webhook/createToken"
+EndPoint =>  "http://localhost:8080/api/webhook/token"
+
+For => stealth token create and finalize
 
 {
+  "message":"message as you want",
   "chain": "ETH",
   "totalSupply": "100000000",
   "token": "FX1 Sports ($FX1)",
@@ -10,13 +13,16 @@ EndPoint =>  "/api/webhook/createToken"
   "teamAllocation": " 5% (caution: team can sell this, unless they lock it)",
   "tax": "Buy 5% | Sell 5% (includes PROOF’s fee — 2% in first 72h, 1% after that)",
   "initialLiquidity": "1 ETH",
-  "liquidityLocked": "90 days"
+  "liquidityLocked": "90 days" (optional)
 }
 
 
-EndPoint => "/api/webhook/createWhiteListToken"
+EndPoint => "http://localhost:8080/api/webhook/whiteListToken"
+
+For => whitelist token created and finalize
 
 {
+  "message":"message as you want",
   "chain": "ETH",
   "totalSupply": "100000000",
   "initialLiquidity": "1 ETH",
@@ -28,4 +34,15 @@ EndPoint => "/api/webhook/createWhiteListToken"
   "tax": "Buy 5% | Sell 5% (includes PROOF’s fee — 2% in first 72h, 1% after that)",
   "whiteListDuration": "10 minutes",
   "currentWhiteListed": "198 (including PROOF Pass holders)"
+}
+
+
+EndPoint => "http://localhost:8080/api/webhook/launchWhiteListToken"
+
+{ 
+  "message":"message as you want", (optional)
+  "Token": "FX1 Sports ($FX1)",
+  "Tax": "Buy 5% | Sell 5% (includes PROOF’s fee — 2% in first 72h, 1% after that)",
+  "WhitelistDuration": "10 minutes",
+  "CurrentlyWhitelisted": "0 ([refresh](#))"
 }
