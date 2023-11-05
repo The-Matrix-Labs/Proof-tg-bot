@@ -10,6 +10,7 @@ import {
   tokenDetailsTemplate,
 } from "./templates/template";
 import { config } from "dotenv";
+import cors from "cors";
 
 config(); // loading .env file
 
@@ -22,6 +23,7 @@ const MESSAGE_DELAY = Number(process.env.MESSAGE_DELAY) || 10000;
 const app = express();
 const bot = new Telegraf(BOT_TOKEN);
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
