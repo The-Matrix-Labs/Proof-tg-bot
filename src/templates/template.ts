@@ -7,36 +7,26 @@ export function tokenDetailsTemplate<T extends ITokenDetails>(
   let template = `
 <b>${data.message ? data.message : ""}</b>
 
-
 <b>Chain:</b> ${data.chain}
-
 <b>Token:</b> ${data.token}
-
 <b>CA:</b> <code>${data.CA}</code>
-
 <b>Owner:</b> <code>${data.owner}</code>
-
 <b>Tax:</b> ${data.tax}
-
 <b>Total supply:</b> ${data.totalSupply}
-
 <b>Max buy:</b> ${data.maxBuy}
-
 <b>Team allocation:</b> ${data.teamAllocation}
-
-<b>Initial liquidity:</b> ${data.initialLiquidity}
-`;
+<b>Initial liquidity:</b> ${data.initialLiquidity}`;
 
   if (data.liquidityLocked) {
-    template += `\n<b>Liquidity locked:</b> ${data.liquidityLocked}\n`;
+    template += `\n<b>Liquidity locked:</b> ${data.liquidityLocked}`;
   }
 
   if (isWhitelist && "whiteListDuration" in data) {
-    template += `\n<b>Whitelist duration:</b> ${data.whiteListDuration}\n`;
+    template += `\n<b>Whitelist duration:</b> ${data.whiteListDuration}`;
   }
 
   if (isWhitelist && "currentWhiteListed" in data) {
-    template += `\n<b>Currently whitelisted:</b> ${data.currentWhiteListed}\n`;
+    template += `\n<b>Currently whitelisted:</b> ${data.currentWhiteListed}`;
   }
 
   template += "\n\n";
@@ -58,15 +48,10 @@ export function launchTokenTemplate(data: ITokenLaunchInfo) {
 
 <b>${data.message ? data.message : ""}</b>
 
-
 <b>Token:</b> ${data.token}
-
 <b>Tax:</b> ${data.tax}
-
 <b>Whitelist duration:</b> ${data.whiteListDuration}
-
-<b>Currently whitelisted:</b> ${data.currentWhiteListed}
-`;
+<b>Currently whitelisted:</b> ${data.currentWhiteListed}`;
 
   template += "\n\n";
 
