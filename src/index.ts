@@ -11,6 +11,11 @@ import {
 } from "./templates/template";
 import { config } from "dotenv";
 import cors from "cors";
+import {
+  validateLaunchWhiteListTokenDetails,
+  validateTokenDetails,
+  validateWhiteListTokenDetails,
+} from "./validation/TypeValidation";
 
 config(); // loading .env file
 
@@ -35,22 +40,31 @@ app.post("/api/webhook/token", async (req: Request, res: Response) => {
   try {
     const tokenDetails: ITokenDetails = req.body;
 
-    const tempalte = tokenDetailsTemplate(tokenDetails);
+    validateTokenDetails(tokenDetails);
+
+    const tempalte = tokenDetailsTemplate<ITokenDetails>(tokenDetails);
 
     bot.telegram.sendMessage(PRIVATE_GROUP_ID, tempalte, {
       parse_mode: "HTML",
+      disable_web_page_preview: true,
     });
 
     setTimeout(() => {
       bot.telegram.sendMessage(PUBLIC_GROUP_ID, tempalte, {
         parse_mode: "HTML",
+        disable_web_page_preview: true,
       });
     }, MESSAGE_DELAY);
 
     res.status(201).json("Stealth Notification has been sent to the group");
   } catch (error) {
-    res.status(500).json("Something went wrong");
-    console.log("error: ", error);
+    if (error instanceof Error) {
+      res
+        .status(400)
+        .json({ error: "Validation failed", message: error.message });
+    } else {
+      res.status(500).json({ error: "An unexpected error occurred" });
+    }
   }
 });
 
@@ -58,15 +72,22 @@ app.post("/api/webhook/whiteListToken", async (req: Request, res: Response) => {
   try {
     const tokenDetails: IWhiteListedTokenDetails = req.body;
 
-    const tempalte = tokenDetailsTemplate(tokenDetails, true);
+    validateWhiteListTokenDetails(tokenDetails);
+
+    const tempalte = tokenDetailsTemplate<IWhiteListedTokenDetails>(
+      tokenDetails,
+      true
+    );
 
     bot.telegram.sendMessage(PRIVATE_GROUP_ID, tempalte, {
       parse_mode: "HTML",
+      disable_web_page_preview: true,
     });
 
     setTimeout(() => {
       bot.telegram.sendMessage(PUBLIC_GROUP_ID, tempalte, {
         parse_mode: "HTML",
+        disable_web_page_preview: true,
       });
     }, MESSAGE_DELAY);
 
@@ -74,8 +95,13 @@ app.post("/api/webhook/whiteListToken", async (req: Request, res: Response) => {
       .status(201)
       .json("WhiteList token notification has been sent to the group");
   } catch (error) {
-    res.status(500).json("Something went wrong");
-    console.log("error: ", error);
+    if (error instanceof Error) {
+      res
+        .status(400)
+        .json({ error: "Validation failed", message: error.message });
+    } else {
+      res.status(500).json({ error: "An unexpected error occurred" });
+    }
   }
 });
 
@@ -85,22 +111,31 @@ app.post(
     try {
       const tokenDetails: ITokenLaunchInfo = req.body;
 
+      validateLaunchWhiteListTokenDetails(tokenDetails);
+
       const tempalte = launchTokenTemplate(tokenDetails);
 
       bot.telegram.sendMessage(PRIVATE_GROUP_ID, tempalte, {
         parse_mode: "HTML",
+        disable_web_page_preview: true,
       });
 
       bot.telegram.sendMessage(PUBLIC_GROUP_ID, tempalte, {
         parse_mode: "HTML",
+        disable_web_page_preview: true,
       });
 
       res
         .status(201)
         .json("Launch token notification has been sent to the group");
     } catch (error) {
-      res.status(500).json("Something went wrong");
-      console.log("error: ", error);
+      if (error instanceof Error) {
+        res
+          .status(400)
+          .json({ error: "Validation failed", message: error.message });
+      } else {
+        res.status(500).json({ error: "An unexpected error occurred" });
+      }
     }
   }
 );

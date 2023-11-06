@@ -8,8 +8,15 @@ export interface ITokenDetails {
   message?: string;
   totalSupply: string;
   teamAllocation: string;
+  isTokenCreated?: boolean;
   initialLiquidity: string;
   liquidityLocked?: string;
+  links: ILink[];
+}
+
+export interface ILink {
+  title: string;
+  url: string;
 }
 
 export interface IWhiteListedTokenDetails extends ITokenDetails {
@@ -17,19 +24,11 @@ export interface IWhiteListedTokenDetails extends ITokenDetails {
   currentWhiteListed: string;
 }
 
-export interface INetwork {
-  [key: string]: {
-    contract: string;
-    factory: string;
-    weth: string;
-    router?: string;
-  };
-}
-
 export interface ITokenLaunchInfo {
-  Tax: string;
-  Token: string;
+  tax: string;
+  token: string;
   message?: string;
-  WhitelistDuration: string;
-  CurrentlyWhitelisted: string;
+  links: ILink[];
+  whiteListDuration: string;
+  currentWhiteListed: string;
 }

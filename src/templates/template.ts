@@ -1,70 +1,82 @@
-import {
-  ITokenDetails,
-  ITokenLaunchInfo,
-  IWhiteListedTokenDetails,
-} from "../interfaces/interface";
+import { ITokenDetails, ITokenLaunchInfo } from "../interfaces/interface";
 
-export function tokenDetailsTemplate(
-  data: ITokenDetails | IWhiteListedTokenDetails,
-  isWhilteList?: boolean
-): string {
-  return `
-  ${data.message ? `<b>${data.message}</b>` : ""}
+export function tokenDetailsTemplate<T extends ITokenDetails>(
+  data: T,
+  isWhitelist?: boolean
+) {
+  let template = `
+<b>${data.message ? data.message : ""}</b>
 
-  🔗 <b>Chain:</b> ${data.chain}
-  
-  🔹 <b>Token:</b> ${data.token}
 
-  🔹 <b>Contract Address:</b> <code>${data.CA}</code>
+<b>Chain:</b> ${data.chain}
 
-  🔹 <b>Owner:</b> <code>${data.owner}</code>
+<b>Token:</b> ${data.token}
 
-  🔹 <b>Tax:</b> ${data.tax}
+<b>CA:</b> <code>${data.CA}</code>
 
-  🔹 <b>Total Supply:</b> ${data.totalSupply}
+<b>Owner:</b> <code>${data.owner}</code>
 
-  🔹 <b>Max Buy:</b> ${data.maxBuy}
+<b>Tax:</b> ${data.tax}
 
-  🔹 <b>Team Allocation:</b> ${data.teamAllocation}
+<b>Total supply:</b> ${data.totalSupply}
 
-  🔹 <b>Initial Liquidity:</b> ${data.initialLiquidity}
+<b>Max buy:</b> ${data.maxBuy}
 
-  ${
-    data.liquidityLocked !== ""
-      ? `🔹 <b>Liquidity locked:</b> ${data.liquidityLocked}`
-      : ""
+<b>Team allocation:</b> ${data.teamAllocation}
+
+<b>Initial liquidity:</b> ${data.initialLiquidity}
+`;
+
+  if (data.liquidityLocked) {
+    template += `\n<b>Liquidity locked:</b> ${data.liquidityLocked}\n`;
   }
 
-  ${
-    isWhilteList && "whiteListDuration" in data
-      ? `🔹 <b>WhiteList Duration:</b> ${
-          (data as IWhiteListedTokenDetails).whiteListDuration
-        }`
-      : ""
+  if (isWhitelist && "whiteListDuration" in data) {
+    template += `\n<b>Whitelist duration:</b> ${data.whiteListDuration}\n`;
   }
 
-  ${
-    isWhilteList && "currentWhiteListed" in data
-      ? `🔹 <b>Currently whitelisted:</b> ${
-          (data as IWhiteListedTokenDetails).currentWhiteListed
-        }`
-      : ""
+  if (isWhitelist && "currentWhiteListed" in data) {
+    template += `\n<b>Currently whitelisted:</b> ${data.currentWhiteListed}\n`;
   }
-  
-  `;
+
+  template += "\n\n";
+
+  template += data.links
+    .map((link) => `<b><a href="${link.url}">${link.title}</a></b>`)
+    .join(" | ");
+
+  template += "\n";
+
+  if ("isTokenCreated" in data && data.isTokenCreated) {
+    template += `\n(We will notify you as soon as this token is launched and available to buy.)`;
+  }
+  return template;
 }
 
 export function launchTokenTemplate(data: ITokenLaunchInfo) {
-  return `
+  let template = `
 
-  ${data.message ? `<b>${data.message}</b>` : ""}
-  
-  <b>Token:</b> ${data.Token}
+<b>${data.message ? data.message : ""}</b>
 
-  <b>Tax:</b> ${data.Tax}
 
-  <b>Whitelist Duration:</b> ${data.WhitelistDuration}
+<b>Token:</b> ${data.token}
 
-  <b>Currently whitelisted:</b> ${data.CurrentlyWhitelisted}
-  `;
+<b>Tax:</b> ${data.tax}
+
+<b>Whitelist duration:</b> ${data.whiteListDuration}
+
+<b>Currently whitelisted:</b> ${data.currentWhiteListed}
+`;
+
+  template += "\n\n";
+
+  template += data.links
+    .map((link) => `<b><a href="${link.url}">${link.title}</a></b>`)
+    .join(" | ");
+
+  template += "\n";
+
+  template += `\n🎟️ As a PROOF Pass holder, the wallet address that holds your NFT is automatically whitelisted.`;
+
+  return template;
 }

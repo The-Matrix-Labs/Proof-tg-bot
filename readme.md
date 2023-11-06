@@ -14,3 +14,8 @@
 cyclic => https://magnificent-jade-trunks.cyclic.app/
 
 digitalOcean => https://lobster-app-tc9ix.ondigitalocean.app/
+
+"links": [
+{ "title": "Buy on Uniswap", "url": "https://app.uniswap.org/" },
+{ "title": "Chart", "url": "https://www.dextools.io/ },
+]
