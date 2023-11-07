@@ -3,8 +3,9 @@ import { NextFunction, Request, Response } from "express";
 
 export const logger = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const messageHeader = `Request: ${req.headers.host} ${req.method} ${req.path}`;
-    const message = `${messageHeader} at ${getTime()}`;
+    const userAgent = req.get("User-Agent");
+    const messageHeader = `${userAgent} ${req.method} ${req.path}`;
+    const message = `Request: [${getTime()}] ${messageHeader}`;
     appendDataInFile("logs.txt", message);
     next();
   } catch (error) {
@@ -20,16 +21,16 @@ export const errorHandler = (
 ) => {
   try {
     if (err instanceof Error) {
-      const message = `Error: ${req.path} ${err.message} at ${getTime()}`;
+      const message = `Error: [${getTime()}] ${req.path} ${err.message}`;
       appendDataInFile("logs.txt", message);
       res
         .status(400)
         .json({ error: "Validation failed", message: err.message });
     } else {
       const messageHeader = `${req.headers.host} ${req.path} `;
-      const message = `Error:${messageHeader} ${err} at ${getTime()}`;
+      const message = `Error: [${getTime()}] ${messageHeader} ${err}`;
       appendDataInFile("logs.txt", message);
-      res.status(500).json({ error: "An unexpected error occurred" });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   } catch (error) {
     console.log("error: ", error);
@@ -38,12 +39,12 @@ export const errorHandler = (
 
 function getTime() {
   const date = new Date();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const seconds = date.getSeconds();
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
 
-  const day = date.getDate();
-  const month = date.getMonth();
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
 
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;

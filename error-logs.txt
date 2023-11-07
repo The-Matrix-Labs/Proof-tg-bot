@@ -1,0 +1,1 @@
+[2023-11-07 05:45:54] ERROR: Invalid type for chain. Expected string but got boolean - Path: http://localhost:8080/api/webhook/launchWhiteListToken - Agent: Thunder Client (https://www.thunderclient.com)
