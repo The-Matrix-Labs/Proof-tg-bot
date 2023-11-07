@@ -1,1 +1,0 @@
-[2023-11-07 05:45:54] INFO: Request to http://localhost:8080/api/webhook/launchWhiteListToken from Thunder Client (https://www.thunderclient.com)
