@@ -69,6 +69,7 @@ export function validateWhiteListTokenDetails(data: any) {
 // * validation for launchWhiteListTokenDetails
 export function validateLaunchWhiteListTokenDetails(data: any) {
   validateType("tax", data.tax, "string");
+  validateType("chain", data.chain, "string");
   validateType("token", data.token, "string");
   validateType("whiteListDuration", data.whiteListDuration, "string");
   validateType("currentWhiteListed", data.currentWhiteListed, "string");

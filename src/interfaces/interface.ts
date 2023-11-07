@@ -26,6 +26,7 @@ export interface IWhiteListedTokenDetails extends ITokenDetails {
 
 export interface ITokenLaunchInfo {
   tax: string;
+  chain: string;
   token: string;
   message?: string;
   links: ILink[];

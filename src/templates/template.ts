@@ -7,26 +7,26 @@ export function tokenDetailsTemplate<T extends ITokenDetails>(
   let template = `
 <b>${data.message ? data.message : ""}</b>
 
-<b>Chain:</b> ${data.chain}
-<b>Token:</b> ${data.token}
-<b>CA:</b> <code>${data.CA}</code>
-<b>Owner:</b> <code>${data.owner}</code>
-<b>Tax:</b> ${data.tax}
-<b>Total supply:</b> ${data.totalSupply}
-<b>Max buy:</b> ${data.maxBuy}
-<b>Team allocation:</b> ${data.teamAllocation}
-<b>Initial liquidity:</b> ${data.initialLiquidity}`;
+<b>Chain:</b> ${data.chain}&#8201
+<b>Token:</b> ${data.token}&#8201
+<b>CA:</b> <code>${data.CA}</code>&#8201
+<b>Owner:</b> <code>${data.owner}</code>&#8201
+<b>Tax:</b> ${data.tax}&#8201
+<b>Total supply:</b> ${data.totalSupply}&#8201
+<b>Max buy:</b> ${data.maxBuy}&#8201
+<b>Team allocation:</b> ${data.teamAllocation}&#8201
+<b>Initial liquidity:</b> ${data.initialLiquidity}&#8201`;
 
   if (data.liquidityLocked) {
-    template += `\n<b>Liquidity locked:</b> ${data.liquidityLocked}`;
+    template += `\n<b>Liquidity locked:</b> ${data.liquidityLocked}&#8201`;
   }
 
   if (isWhitelist && "whiteListDuration" in data) {
-    template += `\n<b>Whitelist duration:</b> ${data.whiteListDuration}`;
+    template += `\n<b>Whitelist duration:</b> ${data.whiteListDuration}&#8201`;
   }
 
   if (isWhitelist && "currentWhiteListed" in data) {
-    template += `\n<b>Currently whitelisted:</b> ${data.currentWhiteListed}`;
+    template += `\n<b>Currently whitelisted:</b> ${data.currentWhiteListed}&#8201`;
   }
 
   template += "\n\n";
@@ -48,10 +48,11 @@ export function launchTokenTemplate(data: ITokenLaunchInfo) {
 
 <b>${data.message ? data.message : ""}</b>
 
-<b>Token:</b> ${data.token}
-<b>Tax:</b> ${data.tax}
-<b>Whitelist duration:</b> ${data.whiteListDuration}
-<b>Currently whitelisted:</b> ${data.currentWhiteListed}`;
+<b>Chain:</b> ${data.chain}&#8201
+<b>Token:</b> ${data.token}&#8201
+<b>Tax:</b> ${data.tax}&#8201
+<b>Whitelist duration:</b> ${data.whiteListDuration}&#8201
+<b>Currently whitelisted:</b> ${data.currentWhiteListed}&#8201`;
 
   template += "\n\n";
 
